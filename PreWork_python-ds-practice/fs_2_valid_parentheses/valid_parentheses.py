@@ -22,3 +22,9 @@ def valid_parentheses(parens):
         >>> valid_parentheses(")()(")
         False
     """
+    print((parens.count('(')==parens.count(')')) and parens[0]=='(' and parens[-1]==')')
+
+valid_parentheses("((())")
+valid_parentheses("()")
+valid_parentheses("()()")
+

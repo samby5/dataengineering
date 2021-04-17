@@ -13,3 +13,15 @@ def find_the_duplicate(nums):
         >>> find_the_duplicate([2, 1, 3, 4]) is None
         True
     """
+    s = set()
+    for i in nums:
+        if i in s:
+            print(i)
+        else:
+            s.add(i)
+
+
+    
+
+find_the_duplicate([6, 1, 9, 5, 3, 4, 9])
+find_the_duplicate([2, 1, 3,4, 4])

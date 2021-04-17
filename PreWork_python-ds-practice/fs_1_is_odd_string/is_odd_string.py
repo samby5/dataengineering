@@ -29,3 +29,9 @@ def is_odd_string(word):
     """
 
     # Hint: you may find the ord() function useful here
+    c=0
+    for i in word.lower():
+        c=c+ord(i)-96
+    print(c%2 != 0) 
+is_odd_string('amazing')
+is_odd_string('AAaa')

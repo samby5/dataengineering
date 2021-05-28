@@ -1,10 +1,5 @@
 from datetime import datetime
-import pyodbc
-#choose between providing uid/password and Trusted_Connection
-conn_str="DRIVER={SQL Server};SERVER=localhost;DATABASE=Springboard;Trusted_Connection=yes"
-sql_conn = pyodbc.connect(conn_str)
-cursor = sql_conn.cursor()
-cursor.execute('truncate table dbo.customer;truncate table dbo.employee;truncate table dbo.bank_account;')
+import connect
 
 #parent class
 class Customer:

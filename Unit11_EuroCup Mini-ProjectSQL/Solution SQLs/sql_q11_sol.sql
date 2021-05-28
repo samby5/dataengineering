@@ -1,7 +1,9 @@
-select distinct  player_name,jersey_no ,playing_club from [euro_cup_2016].player_mast  p
-inner join [euro_cup_2016].match_details m on m.player_gk = p.player_id
-inner join [euro_cup_2016].soccer_country c  on c.country_id = m.team_id
-where country_name  = 'England'
+select pm.player_name,pm.jersey_no,pm.playing_club
+from euro_cup_2016.player_mast    pm,
+     euro_cup_2016.soccer_country sc
+where pm.team_id = sc.country_id
+  and sc.country_name = 'England'
+  and pm.posi_to_play = 'GK'
 
 
 --player_name	jersey_no	playing_club

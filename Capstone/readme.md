@@ -12,3 +12,22 @@ Key Considerations
 9) File Share will be replaced with Amazon S3 Buckets. Use boto3 to move files between s3 buckets
  
 BI Tools can point to data marts for meaningful insights
+
+Static Data :
+business.json - Contains business data including location data, attributes, and categories
+review.json - Contains full review text data including the user_id that wrote the review and the business_id the review is written for.
+user.json - User data including the user's friend mapping and all the metadata associated with the user.
+checkin.json - Checkins on a business.
+tip.json - Tips written by a user on a business. Tips are shorter than reviews and tend to convey quick suggestions.
+dont use photo data 
+=================================================================================
+API Data:
+Business Search	/businesses/search	Search for businesses by keyword, category, location, price level, etc.
+Phone Search	/businesses/search/phone	Search for businesses by phone number.
+Transaction Search	/transactions/{transaction_type}/search	Search for businesses which support food delivery transactions.
+Business Details	/businesses/{id}	Get rich business data, such as name, address, phone number, photos, Yelp rating, price levels and hours of operation.
+Business Match	/businesses/matches	Find the Yelp business that matches an exact input location. Use this to match business data from other sources with Yelp businesses.
+Reviews	/businesses/{id}/reviews	Get up to three review excerpts for a business.
+Autocomplete	/autocomplete	Provide autocomplete suggestions for businesses, search keywords and categories.
+
+Event Endpoint: This endpoint returns the detailed information of a Yelp event. You can get the event ID from /events or /events/featured.

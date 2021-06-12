@@ -77,7 +77,7 @@ class BankAct:
         cursorA.execute('select eid from [Springboard].[dbo].[employee]')
         emp_list=[i[0] for i in cursorA.fetchall()]
         print(cust_list,emp_list)
-        cid=int(input('cid:'))
+        cid=int(input('cid:'))#should be in presentation layer
         eid=int(input('eid:'))
         if (cid in cust_list) and (eid in emp_list):
             return cls(aid=input('aid:'),cid=cid,eid=eid,type=input('type of acct(CA,SA):'),bal=input('Balance:'))

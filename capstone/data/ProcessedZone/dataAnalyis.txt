@@ -1,0 +1,10 @@
+Business:
+
+cols - id,alias,name,image_url,is_closed,url,review_count,categories,rating,coordinates,transactions,price,location,phone, display_phone,distance,categories
+
+
+add Aud Dates, file_name
+write a function to add all files into single cosolidated file with only incremental data 
+split into smaller tables - bus, transactionsbus_dtl , rvw
+
+===============

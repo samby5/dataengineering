@@ -1,0 +1,5 @@
+2021-06-19 07:21:26,810:INFO:2 Business records extracted. sorted_by: best_match
+2021-06-19 07:21:28,192:INFO:Business details records extract complete.Total extracted = 2
+2021-06-19 07:21:28,203:INFO:Review details records extract complete
+2021-06-19 07:21:28,212:INFO:Review details records flattening complete
+2021-06-19 07:21:28,218:INFO:Python Execution Completed Successfully!

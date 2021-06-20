@@ -1,0 +1,4 @@
+batch_id,job_nm,datetime,message
+1,data_collection,20210619-0721,Job Started Successfully
+1,data_collection,20210619-0721,Total business records extracted = 2
+1,data_collection,20210619-0721,Job Completed Successfully

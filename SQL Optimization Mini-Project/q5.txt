@@ -1,0 +1,29 @@
+Set statistics TIME on -- how much time query takes for query execution
+Set statistics IO ON
+
+
+declare  @v6 varchar(20) = 'MGT',  @v7 varchar(20) = 'EE';
+SELECT distinct Student.name FROM Student, 
+	(SELECT studId FROM Transcript, Course WHERE deptId = @v6 AND Course.crsCode = Transcript.crsCode
+	AND studId NOT IN
+	(SELECT studId FROM Transcript, Course WHERE deptId = @v7 AND Course.crsCode = Transcript.crsCode)) as alias
+WHERE Student.id = alias.studId;
+
+--modifield the query to below whic reduced total elapsed time by 1/2 from the original query
+declare  @v6 varchar(20) = 'MGT',  @v7 varchar(20) = 'EE';
+SELECT s.name FROM Student s 
+join Transcript t on s.id=t.studid
+join Course c on c.crscode = t.crscode 
+where deptId = @v6
+except
+SELECT s.name FROM Student s 
+join Transcript t on s.id=t.studid
+join Course c on c.crscode = t.crscode 
+where deptId = @v7
+
+--add a CI on CourseCode and NCI on DeptID
+CREATE Clustered INDEX IX_Course_crscode
+ON Course (crscode);
+
+CREATE NonClustered INDEX IX_Course_deptId
+ON Course (deptId);

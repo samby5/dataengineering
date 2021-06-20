@@ -1,0 +1,12 @@
+declare  @v8 varchar(20) = 'MAT'
+SELECT name FROM Student,
+	(SELECT studId
+	FROM Transcript
+		WHERE crsCode IN
+		(SELECT crsCode FROM Course WHERE deptId = @v8 AND crsCode IN (SELECT crsCode FROM Teaching))
+		GROUP BY studId
+		HAVING COUNT(*) = 
+			(SELECT COUNT(*) FROM Course WHERE deptId = @v8 AND crsCode IN (SELECT crsCode FROM Teaching))) as alias
+WHERE id = alias.studId;
+
+-- I think it is good no optimization required further

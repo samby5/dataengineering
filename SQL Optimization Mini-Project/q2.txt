@@ -1,0 +1,12 @@
+--run executiopn plan to determine whether table scan or seek is done
+declare @v2 int =  1145072, @v3 int = 1828467
+SELECT  name  FROM Student where  id BETWEEN @v2 AND @v3;  --no index on id column, since reading data so advisable to add an index on id column otherwise it will do a table scan. No of rows read = 400
+
+CREATE Clustered INDEX IX_Student_id
+ON Student (id);
+
+--DROP INDEX Student.IX_Student_id;
+
+
+declare @v2 int =  1145072, @v3 int = 1828467
+SELECT  name  FROM Student where  id BETWEEN @v2 AND @v3;  --after adding a clustered index it is doing a table seek. No of rows read = 278

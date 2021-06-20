@@ -1,0 +1,14 @@
+declare  @v4 varchar(25) = 'MGT382';
+SELECT name FROM Student WHERE id IN (SELECT studId FROM Transcript WHERE crsCode = @v4);
+--no of rows read from Course table =100 as there is no index on Transcript Table. 
+-- Although we can add Clustred index on the crsCode column to speed up performance, I would rather prefer CI on the composite key and NCI on crscode to address this query . Add a clustered index  on  columns studId and crsCode. Here 2 cols are predfered as the transcript table is uniquely identified by studId and crsCode cols
+--add add NCI on crsCode which speeds up performance - No of rows read = 2
+
+CREATE Clustered INDEX IX_Course_studId_crsCode
+ON Transcript (studId,crsCode);
+
+--drop index Transcript.IX_Course_studId_crsCode
+--drop index Transcript.IX_Transcript_crsCode
+
+CREATE NonClustered INDEX IX_Transcript_crsCode
+ON Transcript (crsCode);

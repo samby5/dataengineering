@@ -1,0 +1,35 @@
+declare  @v5 varchar(25) = 'Amber Hill';
+		(SELECT distinct P.name FROM Professor P
+			JOIN  Teaching   T  on  P.id = T.profId  and P.name = @v5 
+			join Transcript Tr on Tr.crscode = T.crscode
+			join Student S on S.Id = Tr.studId)
+		--	WHERE P.name = @v5) --AND Professor.id = Teaching.profId
+
+--there was a table scan on teaching table hence included a NCI
+CREATE NonClustered INDEX IX_Teaching_profId on  Teaching(profId) -- No of rows  read = 1 (vs 100 earlier)
+--drop index Teaching.IX_Teaching_profId 
+
+--there was a RID lookup on  teaching table hence included a CI
+CREATE Clustered INDEX IX_Teaching_crscodeprofId on  Teaching(crscode,profId)
+--drop index Teaching.IX_Teaching_crscodeprofId
+
+--created below 2 indexes for Professor id and name cols
+
+CREATE NonClustered INDEX IX_Professor_name
+ON Professor (name);
+
+CREATE Clustered INDEX IX_Professor_id
+ON Professor (id);
+
+--drop index Professor.IX_Professor_idname
+
+--drop index Professor.IX_Professor_id
+
+
+
+--added one more index for removing the RID 
+
+CREATE Clustered INDEX IX_Transcript_crsCode
+ON Transcript (crsCode);
+
+--drop index Transcript.[IX_Transcript_crsCode]

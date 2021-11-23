@@ -15,7 +15,7 @@ class Customer:
         connect.sql_conn.commit()
         print('Customer Created:'+self.cid)
     @classmethod
-	''' create instances based on user input'''
+	# create instances based on user input
     def from_input(cls):
         return cls(cid=input('cid'),name=input('cust_name:'),addr=input('address:'),dob=input('dob:'),cr_score=input('cr_score:'))
     def __repr__(self):
@@ -34,7 +34,7 @@ class Employee:
         connect.sql_conn.commit()
         print('Employee Created:'+self.eid)
     @classmethod
-	''' create instances based on user input'''
+	#create instances based on user input'''
     def from_input(cls):
         return cls(eid=input('eid:'),ename=input('emp_name:'),doj=input('dt of joining:'),spcl=input('specialization(CC,Loan):'))
     def __repr__(self):
@@ -67,7 +67,7 @@ class BankAct:
         BankAct.cursorA.execute(sql,(aid,cid,eid,type,bal,self.createDate))
         connect.sql_conn.commit()
     @classmethod
-	''' create instances based on user input'''
+	#''' create instances based on user input'''
     def from_input(cls):
         cursorA = connect.sql_conn.cursor()
         cursorA.execute('select aid from [Springboard].[dbo].[bank_account]')
@@ -120,7 +120,7 @@ class BankAct:
         '\nAccount Created on: '+str(createDate)+'\nCustomer# '+str(cid)+'\nAccountType# '+type+'\n============')
     
     @classmethod#class method as alternate constructor
-	''' create instances based on user input'''
+	#''' create instances based on user input'''
     def from_file(cls,line_str):
                 aid,cid,eid,type,bal=line_str.split(',')
                 return cls(aid,int(cid),int(eid),type,int(bal))
@@ -151,7 +151,7 @@ class CreditAccount(BankAct):
         BankAct.__init__(aid,cid,eid,type,bal)
         self.cc_int=cc_int
     @classmethod
-	''' create instances based on user input'''
+    #create instances based on user input
     def from_input(cls):
         cursorA = connect.sql_conn.cursor()
         cursorA.execute('select aid from [Springboard].[dbo].[bank_account]')
@@ -175,7 +175,7 @@ class LoanAccount(BankAct):
         BankAct.__init__(aid,cid,eid,type,bal)
 
     @classmethod
-	''' create instances based on user input'''
+	#create instances based on user input
     def from_input(cls):
         cursorA = connect.sql_conn.cursor()
         cursorA.execute('select aid from [Springboard].[dbo].[bank_account]')
